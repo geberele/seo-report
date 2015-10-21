@@ -1,0 +1,9 @@
+// Custom default button.
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #333;
+  text-shadow: none;
+  background-color: $sass-white;
+  border: 1px solid $sass-white;
+}

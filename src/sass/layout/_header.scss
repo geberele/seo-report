@@ -1,0 +1,47 @@
+// Header.
+.navbar {
+  height: 400px;
+  display: inline-block;
+  width: 100%;
+
+  .header {
+    height: 400px;
+    transition: height 0s step-end ! important;
+    -webkit-transition: height 0s step-end ! important;
+
+    h1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      font-family: $font-family-fascinate;
+      font-size: 54px ! important;
+      margin-top: 12% ! important;
+      text-align: center;
+    }
+
+    &.navbar-fixed-top {
+      height: 64px;
+
+      h1 {
+        padding-left: 60px;
+        font-size: 28px ! important;
+        margin: auto ! important;
+        text-align: left;
+      }
+    }
+
+    .navbar-header-right {
+      margin-right: 50px;
+      margin-top: 10px;
+
+      a {
+        font-size: 120%;
+        color: $sass-white;
+        margin-right: 1em;
+        text-decoration: none;
+        text-shadow: 0 1px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+}
