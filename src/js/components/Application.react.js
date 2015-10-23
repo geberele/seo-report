@@ -1,15 +1,12 @@
 var React = require('react');
 var SeoReport = require('./SeoReport.react');
+var Navigation = require('./Navigation.react');
 var $ = require('jquery');
 
 // Material-ui.
 import Colors from 'material-ui/lib/styles';
 var TextField = require('material-ui/lib/text-field');
 var RaisedButton = require('material-ui/lib/raised-button');
-var AppBar = require('material-ui/lib/app-bar');
-var IconButton = require('material-ui/lib/icon-button');
-var IconMenu = require('material-ui/lib/menus/icon-menu');
-var MenuItem = require('material-ui/lib/menu/menu-item');
 
 // Actions/Store.
 var SeoReportActions = require("../actions/SeoReportActions");
@@ -27,7 +24,6 @@ class Application extends React.Component {
       store: new SeoReportStore(),
       submitted: null,
       text: '',
-      rightIcon: false,
       seoReportItems: null
     };
   }
@@ -47,17 +43,17 @@ class Application extends React.Component {
     // Add listener to the store.
     this.state.store.addChangeListener(this._onChangeStore.bind(this));
 
-    var that = this;
     var wrap = $(window);
     var header = $(".header");
+    var iconRight = $(".navbar-icon-right");
     wrap.on("scroll", function() {
       if (this.scrollY > 336) {
         header.addClass("navbar-fixed-top");
-        that.setState({rightIcon: true});
+        iconRight.addClass("fixed");
       }
       else {
         header.removeClass("navbar-fixed-top");
-        that.setState({rightIcon: false});
+        iconRight.removeClass("fixed");
       }
     });
   }
@@ -106,35 +102,8 @@ class Application extends React.Component {
       report = <SeoReport seoReportItems={this.state.seoReportItems}/>;
     }
 
-    let rightField;
-    if (this.state.rightIcon) {
-      rightField = <div className="navbar-header-right">
-        <IconMenu iconButtonElement={
-                    <IconButton>test</IconButton>
-                  }>
-          <MenuItem primaryText="Refresh" />
-          <MenuItem primaryText="Help" />
-          <MenuItem primaryText="Sign out" />
-        </IconMenu>
-      </div>;
-    }
-    else {
-      rightField = <div className="navbar-header-right">
-        <a href="https://github.com/geberele/seo-report" >Documentation</a>
-        <a href="https://github.com/geberele/seo-report" >Support</a>
-        <a href="https://github.com/geberele/seo-report" >Github</a>
-      </div>;
-    }
-
     return <div>
-      <nav>
-        <div className="navbar">
-          <AppBar
-            title="Seo Report"
-            className="header"
-            iconElementRight={rightField}/>
-        </div>
-      </nav>
+      <Navigation />
       <section>
         <div className="container theme-showcased" role="main">
           <div className="row">
